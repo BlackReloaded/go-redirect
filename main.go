@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -27,6 +28,7 @@ Nothing to see here.
 `
 
 type row struct {
+	order    int
 	matcher  *regexp.Regexp
 	replacer string
 }
@@ -51,20 +53,27 @@ func main() {
 
 	matcher := []row{}
 	scanner := bufio.NewScanner(file)
+	counter := 1
 	for scanner.Scan() {
 		matches := strings.Split(scanner.Text(), "->")
 		if len(matches) != 2 {
 			log.Fatalf("wrong line nee '->': %s", scanner.Text())
 		}
 		matcher = append(matcher, row{
+			order:    counter,
 			matcher:  regexp.MustCompile(strings.TrimSpace(matches[0])),
 			replacer: strings.TrimSpace(matches[1]),
 		})
+		counter++
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatalf("error while scanning file: %v", err)
 	}
 	log.Printf("loading %v lines", len(matcher))
+
+	sort.Slice(matcher, func(i, j int) bool {
+		return matcher[i].order < matcher[j].order
+	})
 
 	var t = template.Must(template.New("goimport").Parse(tpl))
 

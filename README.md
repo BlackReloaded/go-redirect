@@ -1,4 +1,4 @@
-# go-urlredirect
+# go-redirect
 
 Adding config urls.conf:
 ```bash
@@ -7,5 +7,5 @@ Adding config urls.conf:
 
 Running the container:
 ```bash
-docker run --rm -v $(PWD):/data/ -p 8080:8080 blackreloaded/go-urlredirect -domain=localhost:8080
+docker run --rm -v $(PWD):/data/ -p 8080:8080 blackreloaded/go-redirect -domain=localhost:8080
 ```
