@@ -7,4 +7,4 @@ FROM scratch
 COPY --from=build /go/src/kohlbau.de/x/go-redirect/go-redirect /bin/
 EXPOSE 8080
 VOLUME [ "/data" ]
-ENTRYPOINT ["/bin/go-urlredirect"]
+ENTRYPOINT ["/bin/go-redirect"]

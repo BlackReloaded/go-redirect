@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"flag"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -79,7 +78,6 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		src := r.URL.Path
-		fmt.Println(src)
 		var target string
 		for _, value := range matcher {
 			if value.matcher.MatchString(src) {
