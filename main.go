@@ -17,7 +17,7 @@ const tpl = `
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="go-import" content="{{.Domain}}{{.Src}} git {{.Target}}.git">
+<meta name="go-import" content="{{.Domain}}{{.Src}} git {{.Target}}">
 <meta name="go-source" content="{{.Domain}}{{.Src}} {{.Target}} {{.Target}}/tree/master{/dir} {{.Target}}/blob/master{/dir}/{file}#L{line}">
 </head>
 <body>
