@@ -85,6 +85,10 @@ func main() {
 				break
 			}
 		}
+		if target == "" {
+			http.Error(w, "No repo", http.StatusNotFound)
+			return
+		}
 
 		data := struct {
 			Domain string
